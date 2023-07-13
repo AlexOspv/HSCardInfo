@@ -7,7 +7,15 @@ import io.reactivex.Single
 
 class GetCardInfoUseCase{
 
-    fun getCardInfo(): CardInfo {
-        return //TODO
+    fun getCardInfo(cardInfoId: Int): CardInfo {
+        return CardInfo(
+            0,
+            "a",
+            0,
+            0,
+            0,
+            "a",
+            " "
+        )
     }
 }

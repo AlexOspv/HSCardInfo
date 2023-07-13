@@ -9,9 +9,8 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-    @FormUrlEncoded
     @GET("cards/sets/Classic")
     fun getCardsInfoList(
         @Query("locale") locale: String = "ruRU"
-    ): Single<CardInfoDto>
+    ): Single<ArrayList<CardInfoDto>>
 }
