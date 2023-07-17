@@ -5,17 +5,16 @@ import com.alexos.heartstonecardsinfo.domain.CardInfo
 
 object CardMapper {
 
-    fun mapDtoToModel(dto: ArrayList<CardInfoDto>): ArrayList<CardInfo> {
+    fun mapDtoToModel(dto: List<CardInfoDto>): List<CardInfo> {
         val cardInfoList = arrayListOf<CardInfo>()
         for (i in dto.indices) {
             cardInfoList.add(
                 CardInfo(
                     dbfId = dto[i].dbfId,
                     name = dto[i].name,
-                    cost = dto[i].cost,
-                    attack = dto[i].attack,
-                    health = dto[i].health,
-                    text = dto[i].text,
+                    type = "Тип: " + dto[i].type,
+                    flavor = dto[i].flavor,
+                    playerClass = "Класс: " + dto[i].playerClass,
                     img = dto[i].img
                 )
             )

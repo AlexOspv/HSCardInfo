@@ -1,17 +1,14 @@
 package com.alexos.heartstonecardsinfo.domain
 
-import android.util.Log
 import androidx.lifecycle.LiveData
-import com.alexos.heartstonecardsinfo.data.network.ApiFactory
-import com.alexos.heartstonecardsinfo.data.network.mapper.CardMapper
-import io.reactivex.Single
+import com.alexos.heartstonecardsinfo.data.network.CardsListRepositoryImpl
 
-class GetCardsInfoListUseCase(private val mapper: CardMapper) {
+class GetCardsInfoListUseCase(
+    private val cardsListRepositoryImpl: CardsListRepositoryImpl
+) {
 
-    fun getCardInfoList(): Single<ArrayList<CardInfo>> {
-        val response = ApiFactory.create().getCardsInfoList()
-            .map { mapper.mapDtoToModel(it) }
-        Log.d("GetCardsInfoListUseCase", "getCardInfoList: $response")
-        return response
+    fun getCardInfoList(): LiveData<List<CardInfo>> {
+        return cardsListRepositoryImpl.getCardsInfoList()
     }
+
 }

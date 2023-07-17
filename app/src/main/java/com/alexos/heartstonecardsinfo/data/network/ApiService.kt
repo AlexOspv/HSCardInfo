@@ -12,5 +12,5 @@ interface ApiService {
     @GET("cards/sets/Classic")
     fun getCardsInfoList(
         @Query("locale") locale: String = "ruRU"
-    ): Single<ArrayList<CardInfoDto>>
+    ): Single<List<CardInfoDto>>
 }

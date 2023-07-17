@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setupRecyclerView()
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        viewModel.getCardsList()
         viewModel.cardsInfoList.observe(this){
             cardsListAdapter.submitList(it)
         }

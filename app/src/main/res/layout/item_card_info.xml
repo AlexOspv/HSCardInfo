@@ -24,7 +24,8 @@
             android:layout_width="0dp"
             android:layout_height="150dp"
             android:layout_weight="2"
-            tools:src="@drawable/no_image_svgrepo_com"/>
+            tools:src="@drawable/no_image_svgrepo_com"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/tv_name"
@@ -37,7 +38,8 @@
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
-            tools:text="Салфетки" />
+            tools:text="@string/tv_name"
+            tools:ignore="RtlSymmetry" />
 
     </LinearLayout>
 
