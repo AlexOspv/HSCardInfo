@@ -45,8 +45,7 @@ class LoginViewModel: ViewModel() {
 
     private fun isPinValid(pin: String): Boolean {
         var result = true
-        count++
-        if (count > 3){
+        if (count > 2){
             _isEnabledEnterButton.value = false
             _isEnabledPinCodeEditText.value = false
             result = false
@@ -63,6 +62,7 @@ class LoginViewModel: ViewModel() {
                 result = false
             }
         }
+        count++
         return result
     }
 
