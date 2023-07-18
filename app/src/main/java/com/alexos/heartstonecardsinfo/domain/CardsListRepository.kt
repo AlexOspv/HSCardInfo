@@ -1,8 +1,6 @@
 package com.alexos.heartstonecardsinfo.domain
 
 import androidx.lifecycle.LiveData
-import io.reactivex.Single
-import java.util.ArrayList
 
 interface CardsListRepository {
 

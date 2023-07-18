@@ -1,69 +1,76 @@
 package com.alexos.heartstonecardsinfo.presentation.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import com.alexos.heartstonecardsinfo.R
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.alexos.heartstonecardsinfo.databinding.FragmentCardInfoBinding
 import com.alexos.heartstonecardsinfo.domain.CardInfo
 import com.alexos.heartstonecardsinfo.presentation.viewmodel.CardInfoViewModel
-import com.google.android.material.button.MaterialButton
 
 class CardInfoFragment : Fragment() {
 
     private lateinit var viewModel: CardInfoViewModel
+    private var _binding: FragmentCardInfoBinding? = null
+    private val binding: FragmentCardInfoBinding
+        get() = _binding ?: throw RuntimeException("FragmentCardInfoBinding == null")
 
-    private lateinit var ivPhoto: ImageView
-    private lateinit var tvName: TextView
-    private lateinit var tvType: TextView
-    private lateinit var tvClass: TextView
-    private lateinit var tvFlavor: TextView
-    private lateinit var buttonOk: MaterialButton
-
-    private val cardInfoItemId: Int = CardInfo.UNDEFINED_ID
+    private var cardInfoItemId: Int = CardInfo.UNDEFINED_ID
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
+        parseParams()
+    }
 
+    private fun parseParams() {
+        val args = requireArguments()
+        if (!args.containsKey(CARD_ITEM_ID)) {
+            throw RuntimeException("Param shop item id is absent")
         }
+        cardInfoItemId = args.getInt(CARD_ITEM_ID, CardInfo.UNDEFINED_ID)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_card_info, container, false)
+    ): View {
+        _binding = FragmentCardInfoBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViews(view)
+        viewModel = ViewModelProvider(this)[CardInfoViewModel::class.java]
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         observeViewModel()
+        setUpBtnOk()
+    }
+
+    private fun setUpBtnOk() {
+        binding.okButton.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
     }
 
     private fun observeViewModel() {
         viewModel.getCardInfoItem(cardInfoItemId)
     }
 
-    private fun initViews(view: View) {
-        ivPhoto = view.findViewById(R.id.iv_photo)
-        tvName = view.findViewById(R.id.tv_name)
-        tvType = view.findViewById(R.id.tv_type)
-        tvClass = view.findViewById(R.id.tv_class)
-        tvFlavor = view.findViewById(R.id.tv_flavor)
-        buttonOk = view.findViewById(R.id.ok_button)
-    }
 
     companion object {
 
         private const val CARD_ITEM_ID = "extra_card_item_id"
 
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(cardInfoItemId: Int) =
             CardInfoFragment().apply {
                 arguments = Bundle().apply {
                     putInt(CARD_ITEM_ID, cardInfoItemId)

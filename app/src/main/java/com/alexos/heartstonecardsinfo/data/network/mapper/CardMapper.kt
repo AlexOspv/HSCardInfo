@@ -13,7 +13,7 @@ object CardMapper {
                     dbfId = dto[i].dbfId,
                     name = dto[i].name,
                     type = "Тип: " + dto[i].type,
-                    flavor = dto[i].flavor,
+                    flavor = if (dto[i].flavor.isNullOrEmpty()) "Nothing interesting :(" else dto[i].flavor,
                     playerClass = "Класс: " + dto[i].playerClass,
                     img = dto[i].img
                 )

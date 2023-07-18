@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.alexos.heartstonecardsinfo.R
+import com.alexos.heartstonecardsinfo.databinding.ItemCardInfoBinding
 import com.alexos.heartstonecardsinfo.domain.CardInfo
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -14,21 +15,26 @@ class CardsListAdapter : ListAdapter<CardInfo, CardItemViewHolder>(CardItemDiffC
     var onCardItemClickListener: ((CardInfo) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardItemViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_card_info, parent, false)
-        return CardItemViewHolder(view)
+        val binding = ItemCardInfoBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
+        return CardItemViewHolder(binding)
     }
 
     override fun onBindViewHolder(viewHolder: CardItemViewHolder, position: Int) {
         val cardInfoItem = getItem(position)
-        viewHolder.view.setOnClickListener {
+        val binding = viewHolder.binding
+        binding.root.setOnClickListener {
             onCardItemClickListener?.invoke(cardInfoItem)
         }
-        viewHolder.tvName.text = cardInfoItem.name
-        Glide.with(viewHolder.ivPhoto.context).load(cardInfoItem.img)
+        binding.tvName.text = cardInfoItem.name
+        Glide.with(binding.ivPhoto.context).load(cardInfoItem.img)
             .placeholder(R.drawable.no_image_svgrepo_com)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .apply(RequestOptions().skipMemoryCache(false))
             .fitCenter()
-            .into(viewHolder.ivPhoto)
+            .into(binding.ivPhoto)
     }
 }

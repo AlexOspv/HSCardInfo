@@ -6,5 +6,11 @@
     <string name="tv_type">Enchantment</string>
     <string name="tv_class">Warrior</string>
     <string name="tv_Flavor">Если запустить достаточное количество огоньков в эредарского повелителя, тот взорвется. Но почему?</string>
-    <string name="btn_ok">OK</string>
+    <string name="btn_ok">НАЗАД</string>
+    <string name="welcome">Добро пожаловать!</string>
+    <string name="pin_code">Введите пин-код:</string>
+    <string name="btn_enter">ВОЙТИ</string>
+    <string name="wrong_pin">Введен неверный пин-код</string>
+    <string name="get_code_again">Внимание! \nПревышено максимальное число попыток ввода кода. \nВести новый код можно через %1$s</string>
+    <string name="press_back_again">Нажмите НАЗАД еще раз для выхода</string>
 </resources>

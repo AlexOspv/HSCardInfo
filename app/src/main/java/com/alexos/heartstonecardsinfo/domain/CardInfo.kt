@@ -1,5 +1,9 @@
 package com.alexos.heartstonecardsinfo.domain
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class CardInfo(
     val dbfId: Int,
     val name: String?,
@@ -7,7 +11,7 @@ data class CardInfo(
     val flavor: String?,
     val playerClass: String?,
     val img: String?
-) {
+):Parcelable {
     companion object {
 
         const val UNDEFINED_ID = -1
