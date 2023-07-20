@@ -1,6 +1,6 @@
 package com.alexos.heartstonecardsinfo.domain
 
-import com.alexos.heartstonecardsinfo.data.network.CardsListRepositoryImpl
+import com.alexos.heartstonecardsinfo.data.repository.CardsListRepositoryImpl
 
 class GetCardInfoUseCase(
     private val cardsListRepositoryImpl: CardsListRepositoryImpl

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.alexos.heartstonecardsinfo.R
 import com.alexos.heartstonecardsinfo.databinding.FragmentLoginBinding
 import com.alexos.heartstonecardsinfo.presentation.viewmodel.LoginViewModel
@@ -55,10 +56,7 @@ class LoginFragment : Fragment() {
             binding.tilPin.error = message
         }
         viewModel.canFinish.observe(viewLifecycleOwner) {
-            val fragment = CardsInfoListFragment()
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.cards_container, fragment)
-                .commit()
+            goToCarsListFragment()
         }
         viewModel.onUpdateTimer.observe(viewLifecycleOwner) {
             binding.tvNextPin.text = getString(R.string.get_code_again, it)
@@ -73,6 +71,10 @@ class LoginFragment : Fragment() {
                 disablePinCodeEditText()
             }
         }
+    }
+
+    private fun goToCarsListFragment() {
+        findNavController().navigate(R.id.action_loginFragment_to_cardsInfoListFragment)
     }
 
     private fun disablePinCodeEditText() {

@@ -1,9 +1,8 @@
 package com.alexos.heartstonecardsinfo.presentation.viewmodel
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.alexos.heartstonecardsinfo.data.network.CardsListRepositoryImpl
+import com.alexos.heartstonecardsinfo.data.repository.CardsListRepositoryImpl
 import com.alexos.heartstonecardsinfo.domain.CardInfo
 import com.alexos.heartstonecardsinfo.domain.GetCardsInfoListUseCase
 
