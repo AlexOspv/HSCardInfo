@@ -6,30 +6,25 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import com.alexos.heartstonecardsinfo.R
 import com.alexos.heartstonecardsinfo.databinding.FragmentCardInfoBinding
 import com.alexos.heartstonecardsinfo.domain.CardInfo
 import com.alexos.heartstonecardsinfo.presentation.viewmodel.CardInfoViewModel
 
 class CardInfoFragment : Fragment() {
 
+    private val args by navArgs<CardInfoFragmentArgs>()
+
     private lateinit var viewModel: CardInfoViewModel
     private var _binding: FragmentCardInfoBinding? = null
     private val binding: FragmentCardInfoBinding
         get() = _binding ?: throw RuntimeException("FragmentCardInfoBinding == null")
 
-    private var cardInfoItemId: Int = CardInfo.UNDEFINED_ID
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        parseParams()
-    }
 
-    private fun parseParams() {
-        val args = requireArguments()
-        if (!args.containsKey(CARD_ITEM_ID)) {
-            throw RuntimeException("Param shop item id is absent")
-        }
-        cardInfoItemId = args.getInt(CARD_ITEM_ID, CardInfo.UNDEFINED_ID)
     }
 
     override fun onCreateView(
@@ -56,25 +51,12 @@ class CardInfoFragment : Fragment() {
 
     private fun setUpBtnOk() {
         binding.okButton.setOnClickListener {
-            parentFragmentManager.popBackStack()
+            findNavController().popBackStack()
         }
     }
 
     private fun observeViewModel() {
-        viewModel.getCardInfoItem(cardInfoItemId)
+        viewModel.getCardInfoItem(args.cardId)
     }
 
-
-    companion object {
-
-        private const val CARD_ITEM_ID = "extra_card_item_id"
-
-        @JvmStatic
-        fun newInstance(cardInfoItemId: Int) =
-            CardInfoFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(CARD_ITEM_ID, cardInfoItemId)
-                }
-            }
-    }
 }

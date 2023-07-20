@@ -1,7 +1,7 @@
 package com.alexos.heartstonecardsinfo.domain
 
 import androidx.lifecycle.LiveData
-import com.alexos.heartstonecardsinfo.data.network.CardsListRepositoryImpl
+import com.alexos.heartstonecardsinfo.data.repository.CardsListRepositoryImpl
 
 class GetCardsInfoListUseCase(
     private val cardsListRepositoryImpl: CardsListRepositoryImpl

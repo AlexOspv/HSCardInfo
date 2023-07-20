@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.alexos.heartstonecardsinfo.R
 import com.alexos.heartstonecardsinfo.databinding.FragmentCardsInfoListBinding
 import com.alexos.heartstonecardsinfo.domain.CardInfo
@@ -95,14 +96,10 @@ class CardsInfoListFragment : Fragment() {
     }
 
     private fun launchFragment(cardInfoItemId: Int) {
-        val fragment = CardInfoFragment.newInstance(cardInfoItemId)
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.cards_container, fragment)
-            .addToBackStack(null)
-            .commit()
+        findNavController().navigate(
+            CardsInfoListFragmentDirections
+                .actionCardsInfoListFragmentToCardInfoFragment(cardInfoItemId)
+        )
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-    }
 }

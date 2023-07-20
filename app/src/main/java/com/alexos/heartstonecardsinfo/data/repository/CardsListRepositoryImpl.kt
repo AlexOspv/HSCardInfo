@@ -1,12 +1,12 @@
-package com.alexos.heartstonecardsinfo.data.network
+package com.alexos.heartstonecardsinfo.data.repository
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.alexos.heartstonecardsinfo.data.network.ApiFactory
 import com.alexos.heartstonecardsinfo.data.network.mapper.CardMapper
 import com.alexos.heartstonecardsinfo.domain.CardInfo
 import com.alexos.heartstonecardsinfo.domain.CardsListRepository
-import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers

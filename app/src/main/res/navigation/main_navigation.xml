@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.alexos.heartstonecardsinfo.presentation.ui.LoginFragment"
+        tools:layout="@layout/fragment_login"
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_cardsInfoListFragment"
+            app:destination="@id/cardsInfoListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/cardInfoFragment"
+        android:name="com.alexos.heartstonecardsinfo.presentation.ui.CardInfoFragment"
+        tools:layout="@layout/fragment_card_info"
+        android:label="CardInfoFragment" >
+        <action
+            android:id="@+id/action_cardInfoFragment_to_cardsInfoListFragment"
+            app:popUpTo="@id/cardsInfoListFragment" />
+        <argument
+            android:name="cardId"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/cardsInfoListFragment"
+        android:name="com.alexos.heartstonecardsinfo.presentation.ui.CardsInfoListFragment"
+        tools:layout="@layout/fragment_cards_info_list"
+        android:label="CardsInfoListFragment" >
+        <action
+            android:id="@+id/action_cardsInfoListFragment_to_cardInfoFragment"
+            app:destination="@id/cardInfoFragment" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_loginFragment"
+        app:destination="@id/loginFragment" />
+</navigation>

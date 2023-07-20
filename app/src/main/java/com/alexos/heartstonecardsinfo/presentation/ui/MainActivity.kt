@@ -3,6 +3,7 @@ package com.alexos.heartstonecardsinfo.presentation.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.alexos.heartstonecardsinfo.R
 import com.alexos.heartstonecardsinfo.presentation.viewmodel.MainViewModel
 
@@ -15,7 +16,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        launchFragment()
     }
 
     override fun onResume() {
@@ -31,10 +31,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun launchFragment() {
-        val fragment = LoginFragment()
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.cards_container, fragment)
-            .commit()
+        findNavController(R.id.cards_container).apply {
+            navigateUp()
+            navigate(R.id.action_global_loginFragment)
+        }
     }
 
 
